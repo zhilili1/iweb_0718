@@ -116,13 +116,16 @@ public class CRUD {
     {
         selectProduct();
         System.out.println("输入你要更改的商品id");
-        int inputId =Integer.parseInt(sc.nextLine());
+        String s5 =sc.nextLine();
+        int inputId =Integer.parseInt(s5);
         System.out.println("更改的商品名");
         String inputProductName =sc.nextLine();
         System.out.println("请更改商品原价");
-        Double inputoriginalPrice =sc.nextDouble();
+        String s3=sc.nextLine();
+        Double inputoriginalPrice =Double.parseDouble(s3);
         System.out.println("请更改商品现价");
-        Double inputpromotePrice =sc.nextDouble();
+        String s4=sc.nextLine();
+        Double inputpromotePrice =Double.parseDouble(s3);
         System.out.println("请更改商品的cid");
         String s1 =sc.nextLine();
         int inputcId =Integer.parseInt(s1);
@@ -134,14 +137,6 @@ public class CRUD {
         String inputsubtitle =sc.nextLine();
         Product c =new Product(inputId,inputProductName,inputsubtitle,inputoriginalPrice,inputpromotePrice,inputStock
         ,inputcId,date);
-//        c.setId(inputId);
-//        c.setName(inputProductName);
-//        c.setCreateDate((java.sql.Date) date);
-//        c.setSubTitle(inputsubtitle);
-//        c.setStock(inputStock);
-//        c.setCid(inputcId);
-//        c.setOriginalPrice(inputoriginalPrice);
-//        c.setPromotePrice(inputpromotePrice);
         a.updateProduct(c);
         MainView.productView();
     }
@@ -261,6 +256,34 @@ public class CRUD {
        }
        return c;
    }
+   public void updateOrder()
+   {
+       selectOrder();
+       System.out.println("请选择你要修改的订单编号");
+       String str1 =sc.nextLine();
+       int inputOrderId =Integer.parseInt(str1);
+       System.out.println("请选择对此订单的状态的处理,填写已发货或者未发货");
+       String inputOrderStatus =sc.nextLine();
+       while (true){
+       if (!(inputOrderStatus.equals("已发货")||inputOrderStatus.equals("未发货")))
+       {
+           System.out.println("订单状态输入有误，请重修输入");
+           inputOrderStatus =sc.nextLine();
+       }
+       else
+       {
+           break;
+       }
+       }
+       Order o =new Order();
+       o.setId(inputOrderId);
+       o.setOrderStatus(inputOrderStatus);
+       a.updateOrder(o);
+       System.out.println("已将订单id为"+o.getId()+"的订单状态修改为"+o.getOrderStatus());
+
+
+   }
+
    public  List<OrderDetail> selectOrderDetail()
    {
        List<OrderDetail> c =a.listOrderDetailAll();
@@ -269,5 +292,6 @@ public class CRUD {
        }
        return c;
    }
+
 
 }

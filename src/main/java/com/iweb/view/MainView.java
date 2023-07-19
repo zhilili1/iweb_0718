@@ -4,6 +4,7 @@ import com.iweb.DAO.InitUserDAO;
 import com.iweb.DAO.impl.CheckUserDAOImpl;
 import com.iweb.DAO.impl.InitUserDAOImpl;
 import com.iweb.controller.MainController;
+import com.iweb.pojo.Address;
 import com.iweb.pojo.User;
 import com.sun.corba.se.impl.resolver.SplitLocalResolverImpl;
 
@@ -66,14 +67,17 @@ public class MainView {
      CheckUserDAOImpl ckdi = new CheckUserDAOImpl();
      List<User> users = ckdi.checkUserAdmin();
      //遍历这个集合，判断user表中是否有输入的账号密码
-     for (int i = 0; i <users.size() ; i++) {
-         if(users.get(i).getUserName().equals(inputName)&&users.get(i).getPassword().equals(inputpassword))
-         {
+     for (User u : users) {
+         if (u.getUserName().equals(inputName) && u.getPassword().equals(inputpassword)) {
+             //登录成功页面
              System.out.println("登录成功");
-             adminLoginSuccessView();
-             break;
+             System.out.println("正在跳转到用户登录成功页面");
+             MainView.userLoginSuccessView();
+             return;
          }
      }
+     System.out.println("未找到该用户，可能你的账户密码有误，请重新输入");
+     adminLoginView();
      }
 //}
 
@@ -85,18 +89,21 @@ public class MainView {
      String inputpassword = sc.nextLine();
      //检查user表，并将其返还给集合users
      CheckUserDAOImpl ckdi = new CheckUserDAOImpl();
-     Collection<User> users = ckdi.checkUserUser();
-         //遍历这个集合，判断user表中是否有输入的账号密码
+     List<User> users = ckdi.checkUserUser();
+     //遍历这个集合，判断user表中是否有输入的账号密码
          for (User u : users) {
              if (u.getUserName().equals(inputName) && u.getPassword().equals(inputpassword)) {
                  //登录成功页面
                  System.out.println("登录成功");
                  System.out.println("正在跳转到用户登录成功页面");
                  MainView.userLoginSuccessView();
-                 break;
-             }
+                 return;
              }
          }
+         System.out.println("未找到该用户，可能你的账户密码有误，请重新输入");
+         userLoginView();
+
+}
 
  //注册界面
     public  static  void registerView()
@@ -156,12 +163,17 @@ public class MainView {
             }
         }
         System.out.println("请输入你要充值的钱");
-        double inputMoney =sc.nextDouble();
-//        System.out.println("请输入你的地址");
-//        String inputAddress =sc.nextLine();
+        String st1 =sc.nextLine();
+        Double inputMoney =Double.parseDouble(st1);
+        System.out.println("请输入你的省份");
+        String inputProvince =sc.nextLine();
+        System.out.println("请输入你的城市");
+        String inputCity =sc.nextLine();
+        System.out.println("请输入详细地址");
+        String inputDetail = sc.nextLine();
         //检查user表，并将其返还给集合users
         CheckUserDAOImpl ckdi =new CheckUserDAOImpl();
-        Collection<User> users = ckdi.checkUser();
+        List<User> users = ckdi.checkUser();
         User u1 =new User();
         u1.setUserName(inputName);
         u1.setPassword(inputpassword);
@@ -176,15 +188,21 @@ public class MainView {
                 System.out.println("该用户已存在，请重修输入");
                 registerView();
             }
-            else{
-                InitUserDAOImpl iudi =new InitUserDAOImpl();
-                iudi.initUser(u1);
-                System.out.println("注册成功");
-                MainView.showView();
-                break;
-            }
     }
-
+        InitUserDAOImpl iudi =new InitUserDAOImpl();
+        //添加成功
+        iudi.initUser(u1);
+        //再次获得user表集合
+        users = ckdi.checkUser();
+        u1.setId(users.get(users.size()-1).getId());
+        Address a =new Address();
+        a.setUid(u1.getId());
+        a.setProvinceAddr(inputProvince);
+        a.setCityAddr(inputCity);
+        a.setDetailAddr(inputDetail);
+        iudi.initAddress(a);
+        System.out.println("注册成功");
+        MainView.showView();
 }
 //管理员登陆成功后的视图
 public static void adminLoginSuccessView()
@@ -266,7 +284,8 @@ public static void propertyValueView()
         System.out.println("你已进入订单页面，请选择你的功能");
         System.out.println("1、查询订单");
         System.out.println("2、查询订单详情");
-        System.out.println("3、返回管理员登录成功页面");
+        System.out.println("3、对订单进行修改");
+        System.out.println("4、返回管理员登录成功页面");
         String inputValue =sc.nextLine();
         MainController.orderViewController(inputValue);
 

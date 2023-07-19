@@ -75,7 +75,7 @@ public class CheckUserDAOImpl implements CheckUserDAO {
     }
 
     @Override
-    public Collection<User> checkUser() {
+    public List<User> checkUser() {
         List<User> users =new ArrayList<>();
         String sql ="select * from user limit ?,?";
         try (

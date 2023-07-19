@@ -320,7 +320,7 @@ public class AdminDAOImpl implements AdminDAO {
 
     @Override
     public void updatePropertyValue(PropertyValue p) {
-        String sql = "update property set  value = ? ,pid =?,ptid =?  where id = ?";
+        String sql = "update property set  `value` = ? ,pid =?,ptid =?  where id = ?";
         try(
                 Connection c = DButil.getConnection();
                 PreparedStatement ps =c.prepareStatement(sql)
@@ -371,14 +371,12 @@ public class AdminDAOImpl implements AdminDAO {
     @Override
     public List<Order> listOrderAll() {
         List<Order> ctgs =new ArrayList<>();
-        String sql ="select * from order limit ?,?";
+        String sql ="SELECT * FROM `order`";
         try (
                 Connection c = DButil.getConnection();
                 PreparedStatement ps =c.prepareStatement(sql);
         )
         {
-            ps.setInt(1,0);
-            ps.setInt(2,Integer.MAX_VALUE);
             ResultSet rs =  ps.executeQuery();
             while (rs.next())
             {
@@ -386,7 +384,7 @@ public class AdminDAOImpl implements AdminDAO {
                 ctg.setId(rs.getInt("order_id"));
                 ctg.setUid(rs.getInt("user_id"));
                 ctg.setAddressId(rs.getInt("address_id"));
-                ctg.setOrderDate(rs.getDate("order_data"));
+                ctg.setOrderDate(rs.getDate("order_date"));
                 ctg.setOrderStatus(rs.getString("order_status"));
                 ctgs.add(ctg);
             }
@@ -423,5 +421,24 @@ public class AdminDAOImpl implements AdminDAO {
             e.printStackTrace();
         }
         return (ctgs.isEmpty())?null:ctgs;
+    }
+    //更具oid修改订单状态
+    public void updateOrder(Order o)
+    {
+        String sql = "update `order` set order_status= ?  where order_id = ?";
+        try(
+                Connection c = DButil.getConnection();
+                PreparedStatement ps =c.prepareStatement(sql)
+        )
+        {
+            ps.setString(1,o.getOrderStatus());
+            ps.setInt(2,o.getId());
+            ps.execute();
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

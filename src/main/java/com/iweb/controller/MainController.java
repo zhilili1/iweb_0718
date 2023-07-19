@@ -174,8 +174,15 @@ public class MainController {
             case "2":
                 crud.selectOrderDetail();
                 MainView.orderView();
+                break;
             case "3":
+                crud.updateOrder();
+                MainView.orderView();
+                break;
+
+            case"4":
                 MainView.adminLoginSuccessView();
+                break;
         }
     }
 }

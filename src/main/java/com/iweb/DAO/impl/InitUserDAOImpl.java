@@ -1,6 +1,7 @@
 package com.iweb.DAO.impl;
 
 import com.iweb.DAO.InitUserDAO;
+import com.iweb.pojo.Address;
 import com.iweb.pojo.User;
 import com.iweb.util.DButil;
 
@@ -26,5 +27,25 @@ public class InitUserDAOImpl implements InitUserDAO {
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initAddress(Address address) {
+        String sql = "insert into address(uid,province_addr,city_addr,detail_addr)values(?,?,?,?)";
+        try(Connection c =DButil.getConnection();
+            PreparedStatement ps =c.prepareStatement(sql);
+        )
+        {
+            ps.setInt(1,address.getUid());
+            ps.setString(2,address.getProvinceAddr());
+            ps.setString(3,address.getCityAddr());
+            ps.setString(4,address.getDetailAddr());
+            ps.execute();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }
