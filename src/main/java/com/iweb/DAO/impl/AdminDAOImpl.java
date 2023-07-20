@@ -320,7 +320,7 @@ public class AdminDAOImpl implements AdminDAO {
 
     @Override
     public void updatePropertyValue(PropertyValue p) {
-        String sql = "update property set  `value` = ? ,pid =?,ptid =?  where id = ?";
+        String sql = "update propertyvalue set  `value` = ? ,pid =?,ptid =?  where id = ?";
         try(
                 Connection c = DButil.getConnection();
                 PreparedStatement ps =c.prepareStatement(sql)

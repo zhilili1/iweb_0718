@@ -215,7 +215,7 @@ public class CRUD {
        c.setPtid(inputptid);
        a.insertPropertyValue(c);
        System.out.println("已经添加"+c.getValue()+"属性值");
-       MainView.propertyView();
+       MainView.propertyValueView();
 
    }
    public void deletepropertyValue()

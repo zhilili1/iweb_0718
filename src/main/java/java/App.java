@@ -1,7 +1,6 @@
 package java;
 
 import com.iweb.DAO.UserDAO;
-import com.iweb.DAO.impl.UserDAOImpl;
 import com.iweb.pojo.Product;
 import com.iweb.pojo.User;
 import com.iweb.util.DButil;
