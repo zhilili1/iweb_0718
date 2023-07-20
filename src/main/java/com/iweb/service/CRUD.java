@@ -41,7 +41,18 @@ public class CRUD {
     {
         selectCategory();
         System.out.println("请输入你更新的类id");
-        int inputId =Integer.parseInt(sc.nextLine());
+        String s1 =sc.nextLine();
+        int inputId ;
+        try
+        {
+            inputId = Integer.parseInt(s1);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重新输入");
+            updateCategory();
+            return;
+        }
         System.out.println("请输入你要更新的新内容");
         String inputName =sc.nextLine();
         Category c =new Category();
@@ -74,15 +85,60 @@ public class CRUD {
     public void insertProduct()
     {
         System.out.println("增加的商品名");
-        String inputProductName =sc.nextLine();
+
+       String inputProductName=sc.nextLine();
+
         System.out.println("请增加商品原价");
-        Double inputoriginalPrice =Double.parseDouble(sc.nextLine());
+        String s2 =sc.nextLine();
+        Double inputoriginalPrice;
+        try {
+            inputoriginalPrice =Double.parseDouble(s2);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            insertProduct();
+            return;
+        }
         System.out.println("请增加商品现价");
-        Double inputpromotePrice =Double.parseDouble(sc.nextLine());
+        String s3 =sc.nextLine();
+        Double inputpromotePrice ;
+        try {
+            inputpromotePrice =Double.parseDouble(s3);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            insertProduct();
+            return;
+        }
         System.out.println("请添加商品的cid");
-        int inputcId =Integer.parseInt(sc.nextLine());
+        String s4=sc.nextLine();
+        int inputcId;
+        try
+        {
+            inputcId = Integer.parseInt(s4);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重新输入");
+            insertProduct();
+            return;
+        }
+
         System.out.println("请添加商品的总数");
-        int inputStock =Integer.parseInt(sc.nextLine());
+        String s5 =sc.nextLine();
+        int inputStock;
+        try
+        {
+            inputStock = Integer.parseInt(s5);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重新输入");
+            insertProduct();
+            return;
+        }
         System.out.println("请输入广告词");
         String inputsubtitle =sc.nextLine();
         Date date =new Date(System.currentTimeMillis());
@@ -117,21 +173,66 @@ public class CRUD {
         selectProduct();
         System.out.println("输入你要更改的商品id");
         String s5 =sc.nextLine();
-        int inputId =Integer.parseInt(s5);
+        int inputId;
+        try {
+            inputId =Integer.parseInt(s5);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            updateProduct();
+            return;
+        }
         System.out.println("更改的商品名");
         String inputProductName =sc.nextLine();
         System.out.println("请更改商品原价");
         String s3=sc.nextLine();
-        Double inputoriginalPrice =Double.parseDouble(s3);
+        Double inputoriginalPrice;
+        try {
+            inputoriginalPrice =Double.parseDouble(s3);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            updateProduct();
+            return;
+        }
         System.out.println("请更改商品现价");
         String s4=sc.nextLine();
-        Double inputpromotePrice =Double.parseDouble(s3);
+        Double inputpromotePrice;
+        try {
+            inputpromotePrice =Double.parseDouble(s4);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            updateProduct();
+            return;
+        }
         System.out.println("请更改商品的cid");
         String s1 =sc.nextLine();
-        int inputcId =Integer.parseInt(s1);
+        int inputcId;
+        try {
+            inputcId =Integer.parseInt(s1);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            updateProduct();
+            return;
+        }
         System.out.println("请更改商品的总数");
         String s2 =sc.nextLine();
-        int inputStock =Integer.parseInt(s2);
+        int inputStock;
+        try {
+            inputStock =Integer.parseInt(s2);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            updateProduct();
+            return;
+        }
         Date date =new Date(System.currentTimeMillis());
         System.out.println("请更改广告词");
         String inputsubtitle =sc.nextLine();
@@ -156,7 +257,16 @@ public class CRUD {
         String inputProperty =sc.nextLine();
         System.out.println("请输入cid");
         String str1 =sc.nextLine();
-        int inputCid = Integer.parseInt(str1);
+        int inputCid;
+        try {
+            inputCid =Integer.parseInt(str1);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            insertProperty();
+            return;
+        }
         Property c =new Property();
         c.setName(inputProperty);
         c.setCid(inputCid);
@@ -180,12 +290,30 @@ public class CRUD {
         selectProperty();
         System.out.println("请输入你要更新的商品id");
         String str1 =sc.nextLine();
-        int inputId =Integer.parseInt(str1);
+        int inputId ;
+        try {
+            inputId =Integer.parseInt(str1);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            updateProperty();
+            return;
+        }
         System.out.println("请输入你要更新的商品属性名");
         String inputPropertyName =sc.nextLine();
         System.out.println("请输入你要更新的商品cid");
         String str2 =sc.nextLine();
-        int inputCid =Integer.parseInt(str2);
+        int inputCid ;
+        try {
+            inputCid =Integer.parseInt(str2);
+        }
+        catch (Exception e)
+        {
+            System.out.println("输入格式有误，请重修输入");
+            updateProperty();
+            return;
+        }
         Property c =new Property(inputId,inputCid,inputPropertyName);
         a.updateProperty(c);
         System.out.println("更新成功");
@@ -205,10 +333,28 @@ public class CRUD {
        String inputPropertyvalue =sc.nextLine();
        System.out.println("请输入pid");
        String str1 =sc.nextLine();
-       int inputPid = Integer.parseInt(str1);
+       int inputPid;
+       try {
+           inputPid =Integer.parseInt(str1);
+       }
+       catch (Exception e)
+       {
+           System.out.println("输入格式有误，请重修输入");
+           insertpropertyValue();
+           return;
+       }
        System.out.println("请输入ptid");
        String str2 =sc.nextLine();
-       int inputptid = Integer.parseInt(str2);
+       int inputptid;
+       try {
+           inputptid =Integer.parseInt(str2);
+       }
+       catch (Exception e)
+       {
+           System.out.println("输入格式有误，请重修输入");
+           insertpropertyValue();
+           return;
+       }
        PropertyValue c =new PropertyValue();
        c.setValue(inputPropertyvalue);
        c.setPid(inputPid);
@@ -234,15 +380,43 @@ public class CRUD {
        selectpropertyValue();
        System.out.println("请输入你要更新的商品值id");
        String str1 =sc.nextLine();
-       int inputId =Integer.parseInt(str1);
+       int inputId;
+       try {
+           inputId =Integer.parseInt(str1);
+       }
+       catch (Exception e)
+       {
+           System.out.println("输入格式有误，请重修输入");
+           deletepropertyValue();
+           return;
+       }
        System.out.println("请输入你要更新的商品属性值");
        String inputPropertyValue =sc.nextLine();
        System.out.println("请输入你要更新的商品pid");
        String str2 =sc.nextLine();
-       int inputPid =Integer.parseInt(str2);
+       int inputPid;
+       try {
+           inputPid =Integer.parseInt(str2);
+       }
+       catch (Exception e)
+       {
+           System.out.println("输入格式有误，请重修输入");
+           deletepropertyValue();
+           return;
+       }
        System.out.println("请输入你要更新的商品ptid");
        String str3 =sc.nextLine();
-       int inputPtid =Integer.parseInt(str3);
+       int inputPtid;
+       try {
+           inputPtid =Integer.parseInt(str3);
+       }
+       catch (Exception e)
+       {
+           System.out.println("输入格式有误，请重修输入");
+           deletepropertyValue();
+           return;
+       }
+
        PropertyValue c =new PropertyValue(inputId,inputPid,inputPtid,inputPropertyValue);
        a.updatePropertyValue(c);
        System.out.println("更新成功");
@@ -261,7 +435,16 @@ public class CRUD {
        selectOrder();
        System.out.println("请选择你要修改的订单编号");
        String str1 =sc.nextLine();
-       int inputOrderId =Integer.parseInt(str1);
+       int inputOrderId ;
+       try {
+           inputOrderId =Integer.parseInt(str1);
+       }
+       catch (Exception e)
+       {
+           System.out.println("输入格式有误，请重修输入");
+           updateOrder();
+           return;
+       }
        System.out.println("请选择对此订单的状态的处理,填写已发货或者未发货");
        String inputOrderStatus =sc.nextLine();
        while (true){
@@ -283,7 +466,6 @@ public class CRUD {
 
 
    }
-
    public  List<OrderDetail> selectOrderDetail()
    {
        List<OrderDetail> c =a.listOrderDetailAll();
@@ -292,6 +474,4 @@ public class CRUD {
        }
        return c;
    }
-
-
 }
