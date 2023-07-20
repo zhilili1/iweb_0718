@@ -6,6 +6,7 @@ import com.iweb.view.MainView;
 
 public class MainController {
     //管理员登录成功控制器，根据key值不同，跳转到不同的view视图
+    private static CRUD crud =new CRUD();
 
     public static void adminLoginSuccessViewController(String key)
     {
@@ -41,7 +42,6 @@ public class MainController {
     }
     public static void categoryViewController(String key)
     {
-        CRUD crud =new CRUD();
         switch (key)
         {
             case "1":
@@ -65,7 +65,7 @@ public class MainController {
     }
     public static void productViewController(String key)
     {
-        CRUD crud =new CRUD();
+
         switch (key)
         {
             case "1":
@@ -88,7 +88,7 @@ public class MainController {
 
     }
     public static void propertyViewController(String key)
-    {CRUD crud =new CRUD();
+    {
         switch (key)
         {
 
@@ -113,7 +113,7 @@ public class MainController {
     }
     public static void propertyValueViewController(String key)
     {
-        CRUD crud =new CRUD();
+
         switch (key)
         {
 
@@ -139,7 +139,7 @@ public class MainController {
     }
     public static void userLoginSuccessViewController(String key)
     {
-        CRUD crud =new CRUD();
+
         switch (key)
         {
             case "1":
@@ -164,7 +164,7 @@ public class MainController {
     }
     public static void orderViewController(String key)
     {
-        CRUD crud =new CRUD();
+
         switch (key)
         {
             case"1":
