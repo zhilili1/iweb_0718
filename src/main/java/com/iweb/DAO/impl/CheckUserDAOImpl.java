@@ -60,7 +60,7 @@ public class CheckUserDAOImpl implements CheckUserDAO {
                 u.setUserName(rs.getString("username"));
                 u.setPassword(rs.getString("password"));
                 u.setAuthority(rs.getString("authority"));
-                u.setPhone(rs.getString("phone"));
+                u.setPhone(rs.getString("phone "));
                 u.setMoney(rs.getDouble("money"));
                 users.add(u);
             }
